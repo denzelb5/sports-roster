@@ -1,28 +1,58 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.scss';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import firebase from 'firebase/app';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <button className='btn btn-danger'>HELP ME</button>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import firebaseConnection from '../helpers/data/connection';
+import Auth from '../components/Auth/Auth';
+import Navbar from '../components/Navbar/Navbar';
+import TeamBoard from '../components/TeamBoard/TeamBoard';
+
+
+import './App.scss';
+
+firebaseConnection();
+
+class App extends React.Component {
+  state = {
+    authed: false,
+    selectedBoardId: null,
+  }
+
+  componentDidMount() {
+    this.removeListener = firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({ authed: true });
+      } else {
+        this.setState({ authed: false });
+      }
+    });
+  }
+
+  componentWillUnmount() {
+    this.removeListener();
+  }
+
+  // setSingleBoard = (selectedBoardId) => {
+  //   this.setState({ selectedBoardId });
+  // }
+
+  renderView = () => {
+    const { authed, selectedBoardId } = this.state;
+    if (!authed) {
+      return (<Auth />);
+    }
+    return (<TeamBoard selectedBoardId={selectedBoardId} setSingleBoard={this.setSingleBoard}/>);
+  }
+
+  render() {
+    const { authed } = this.state;
+
+    return (
+      <div className="App">
+        <Navbar authed={authed} />
+        { this.renderView() }
+      </div>
+    );
+  }
 }
 
 export default App;

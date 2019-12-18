@@ -1,6 +1,6 @@
 import React from 'react';
 import firebase from 'firebase/app';
-
+import 'firebase/auth';
 import firebaseConnection from '../helpers/data/connection';
 import Auth from '../components/Auth/Auth';
 import Navbar from '../components/Navbar/Navbar';
@@ -14,7 +14,6 @@ firebaseConnection();
 class App extends React.Component {
   state = {
     authed: false,
-    selectedBoardId: null,
   }
 
   componentDidMount() {
@@ -31,16 +30,13 @@ class App extends React.Component {
     this.removeListener();
   }
 
-  // setSingleBoard = (selectedBoardId) => {
-  //   this.setState({ selectedBoardId });
-  // }
 
   renderView = () => {
-    const { authed, selectedBoardId } = this.state;
+    const { authed } = this.state;
     if (!authed) {
       return (<Auth />);
     }
-    return (<TeamBoard selectedBoardId={selectedBoardId} setSingleBoard={this.setSingleBoard}/>);
+    return (<TeamBoard />);
   }
 
   render() {

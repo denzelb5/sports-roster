@@ -1,0 +1,50 @@
+{
+  "player1" {
+    "name": "",
+    "imageUrl": "",
+    "position": "",
+    "uid": ""
+  },
+  "player2" {
+    "name": "",
+    "imageUrl": "",
+    "position": "",
+    "uid": ""
+  },
+  "player3" {
+    "name": "",
+    "imageUrl": "",
+    "position": "",
+    "uid": ""
+  },
+  "player4" {
+    "name": "",
+    "imageUrl": "",
+    "position": "",
+    "uid": ""
+  },
+  "player5" {
+    "name": "",
+    "imageUrl": "",
+    "position": "",
+    "uid": ""
+},
+  "player6" {
+    "name": "",
+    "imageUrl": "",
+    "position": "",
+    "uid": ""
+  },
+  "player7" {
+    "name": "",
+    "imageUrl": "",
+    "position": "",
+    "uid": ""
+  },
+  "player8" {
+    "name": "",
+    "imageUrl": "",
+    "position": "",
+    "uid": ""
+  },
+}
